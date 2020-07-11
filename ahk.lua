@@ -114,7 +114,23 @@ function M.init()
         #NoTrayIcon
         #Persistent
         SetBatchLines, -1
-        ]], nil, nil) ~= nul
+        ]], nil, nil) ~= nil
+end
+
+function M.initWithText(script, options, parameters)
+    if C == nil then
+        C = ffi.load('AutoHotkey')
+    end
+
+    return C.ahkTextDll(L(script), L(options), L(parameters)) ~= nil
+end
+
+function M.initWithFile(scriptPath, options, parameters)
+    if C == nil then
+        C = ffi.load('AutoHotkey')
+    end
+
+    return C.ahkDll(L(scriptPath), L(options), L(parameters)) ~= nil
 end
 
 -- return: true(success) false(error)
