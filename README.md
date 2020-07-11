@@ -8,41 +8,58 @@ UNICODE version of AutoHotkey.dll should be put into the directory of lua51.dll.
 ```
 local ahk = require 'ahk'
 
+-- init()
 ahk.init()
 
-ahk.exec('MsgBox, 0, title, exec test 1, 0.3')
+-- exec()
+ahk.exec('MsgBox, exec test')
 
 ahk.exec([[
     a := 333
-    b := "getVar test 2"
+    b := "getVar test"
 ]])
 
-ahk.exec('MsgBox, 0, title, ' .. ahk.getVar('b') .. ', 0.3')
+-- setVar()
+ahk.setVar('b', 'getVar new test')
+
+-- getVar()
+print(ahk.getVar('a'))
+ahk.exec('MsgBox, ' .. ahk.getVar('b'))
 
 ahk.exec([[
 Fun(Text) {
-    MsgBox, 0, title, % Text, 0.3
+    MsgBox, % Text
     return Text
 }
 
 return
 
 La:
-    MsgBox, 0, title, label test 4, 0.3
+    MsgBox, label test
     return
 ]])
 
-print(ahk.func('Fun', 'func test 3'))
+-- func()
+print(ahk.func('Fun', 'func test'))
 
+-- label()
 print(ahk.label('La'))
 
-local L = require 'utf8fix'.L
-ahk.C().ahkExec(L'MsgBox, 0, title, C test 5, 0.3')
+-- addScript()
+ahk.addScript('MsgBox, addScript test', true)
 
-ahk.addScript('MsgBox, 0, title, addScript test 6, 0.3', true)
-
-pLine = ahk.addScript('MsgBox, 0, title, execLine test 7, 0.3')
+-- execLine()
+pLine = ahk.addScript('MsgBox, execLine test')
 print(ahk.execLine(pLine, 3, true))
+
+-- C()
+local L = require 'utf8fix'.L
+ahk.C().ahkExec(L'MsgBox, C test')
+
+-- initWithText()
+ahk.initWithText('#Persistent\nMsgbox, initWithText test %1%', nil, 'abc')
+
+ahk.exec('Sleep, 2000')
 ```
 
 ## API
