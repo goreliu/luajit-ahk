@@ -1,5 +1,5 @@
 # luajit-ahk
-LuaJIT FFI binding for [AutoHotkey_H](https://hotkeyit.github.io/v2/).
+LuaJIT FFI binding for [AutoHotkey_H](https://hotkeyit.github.io/v2/) v1.
 
 ## example
 
