@@ -1,9 +1,5 @@
 local M = {}
 
-local utf8fix = require 'utf8fix'
-local L = utf8fix.L
-local w2u = utf8fix.w2u
-
 local ffi = require 'ffi'
 
 ffi.cdef[[
@@ -15,13 +11,13 @@ typedef UInt *UPtr;
 // options: Additional parameter passed to AutoHotkey.dll.
 // parameters: Parameters passed to dll.
 // return: A thread handle.
-UPtr ahkdll(Str scriptPath, Str options, Str parameters);
+UPtr ahkDll(Str scriptPath, Str options, Str parameters);
 
 // script: A string with ahk script.
 // options: Additional parameter passed to AutoHotkey.dll.
 // parameters: Parameters passed to dll.
 // return: A thread handle.
-UPtr ahktextdll(Str script, Str options, Str parameters);
+UPtr ahkTextDll(Str script, Str options, Str parameters);
 
 // return: 1 if a thread is running or 0 otherwise.
 int ahkReady();
@@ -33,12 +29,12 @@ int ahkExec(Str script);
 // varName: Name of a variable.
 // value: Name of a variable.
 // return: 0 on success and -1 on failure.
-int ahkassign(Str varName, Str value);
+int ahkAssign(Str varName, Str value);
 
 // varName: Name of variable to get value from.
 // getPointer: Use 1 to get pointer of variable, else 0 to get the value.
 // return: Always a string, empty string if variable does not exist or is empty.
-Str ahkgetvar(Str varName, UInt getPointer);
+Str ahkGetVar(Str varName, UInt getPointer);
 
 // timeout: Time in milliseconds to wait until thread exits.
 // return: Returns always 0.
@@ -100,6 +96,10 @@ UPtr addFile(Str path, int allowDuplicateInclude, int ignoreLoadFailure);
 // ahkFindFunc
 ]]
 
+local utf8fix = require 'utf8fix'
+local L = utf8fix.L
+local w2u = utf8fix.w2u
+
 local C = nil
 
 -- return: true(success) false(error)
@@ -109,7 +109,7 @@ function M.init()
     end
 
     C = ffi.load('AutoHotkey')
-    return C.ahktextdll(L[[
+    return C.ahkTextDll(L[[
         #NoEnv
         #NoTrayIcon
         #Persistent
@@ -124,12 +124,13 @@ end
 
 -- return: true(success) false(error)
 function M.setVar(name, value)
-    return C.ahkassign(L(name), L(value)) == 0
+    return C.ahkAssign(L(name), L(value)) == 0
 end
 
+-- getPointer: true(get pointer of variable) false(get the value, default)
 -- return: string
-function M.getVar(name)
-    return w2u(C.ahkgetvar(L(name), 0), -1)
+function M.getVar(name, getPointer)
+    return w2u(C.ahkGetVar(L(name), getPointer and 1 or 0), -1)
 end
 
 -- return: true(label exists) false(otherwise)
