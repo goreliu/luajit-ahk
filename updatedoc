@@ -9,5 +9,9 @@ sed -i '/^## API/,$d' README.md
         | grep -E '^function|^--' \
         | sed -E 's/^function M\.(.*)/\1\n/g'
 
+    echo '```\n\n## C API\n\n```'
+
+    sed -n '/^ffi.cdef/,/^]]/p' src/ahk.lua
+
     echo '```'
 } >> README.md
