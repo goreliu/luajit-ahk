@@ -1,3 +1,4 @@
+-- Modified from
 -- https://github.com/actboy168/ydhost/blob/master/tools/mapdump/lua/ffi/unicode.lua
 
 --[[ Usage 
