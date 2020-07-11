@@ -3,7 +3,7 @@
 sed -i '/^## API/,$d' README.md
 
 {
-    echo '## API\n```'
+    echo '## API\n\n```'
 
     cat src/ahk.lua \
         | grep -E '^function|^--' \

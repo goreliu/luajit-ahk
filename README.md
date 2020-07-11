@@ -1,9 +1,19 @@
 # luajit-ahk
 LuaJIT FFI binding for [AutoHotkey_H](https://hotkeyit.github.io/v2/) v1.
 
-**UNICODE version of AutoHotkey.dll should be put into the directory of lua51.dll.**
+## Install
 
-## example
+**UNICODE version of AutoHotkey.dll should be put into the directory of lua51.dll first.**
+
+Install with [luarocks](https://luarocks.org/) [(luajit-ahk)](https://luarocks.org/modules/goreliu/luajit-ahk):
+
+```
+luarocks install luajit-ahk
+```
+
+Or download [master.zip](https://github.com/goreliu/luajit-ahk/archive/master.zip), use `src/ahk.lua` and `src/utf8fix.lua`.
+
+## Example
 
 ```
 local ahk = require 'ahk'
@@ -63,6 +73,7 @@ ahk.exec('Sleep, 2000')
 ```
 
 ## API
+
 ```
 -- Load AutoHotkey.dll and call ahkTextDll with
 --     #NoEnv

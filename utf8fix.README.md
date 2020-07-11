@@ -13,7 +13,7 @@ L:   UTF-8  -> UTF-16
 A:   UTF-8  -> ANSI
 ```
 
-## example
+## Example
 
 ```
 local utf8fix = require 'utf8fix'
