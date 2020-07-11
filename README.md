@@ -140,7 +140,10 @@ execLine(pLine, mode, wait)
 
 -- path: Path to a file that will be added to a running script.
 -- reload: true(reload) false(do not reload, default)
--- ignoreError: 0(signal an error, default) 1(ignore error) 2
+-- ignoreError: 0(signal an error if there was problem adding file, default)
+--              1(ignore error)
+--              2(remove script lines added by previous calls to addFile()
+--                and start executing at the first line in the new script)
 -- return: A pointer to the first line of new created code.
 addFile(path, reload, ignoreError)
 
