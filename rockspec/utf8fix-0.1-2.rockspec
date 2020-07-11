@@ -1,12 +1,12 @@
 package = "utf8fix"
-version = "0.1-1"
+version = "0.1-2"
 source = {
     url = "git://github.com/goreliu/luajit-ahk"
 }
 description = {
-    summary = "UTF-8 <-> UTF-16 <-> ANSI for LuaJIT (Windows only)",
+    summary = "UTF-8 <-> UTF-16 <-> ANSI converter for LuaJIT (Windows only)",
     detailed = [[
-        "UTF-8 <-> UTF-16 <-> ANSI for LuaJIT (Windows only)"
+        Convert strings between UTF-8, UTF-16 and ANSI, for LuaJIT (Windows only).
     ]],
     homepage = "https://github.com/goreliu/luajit-ahk/blob/master/utf8fix.README.md",
     license = "MIT"

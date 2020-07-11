@@ -1,6 +1,6 @@
 # utf8fix
 
-UTF-8 <-> UTF-16 <-> ANSI for LuaJIT (Windows only)
+Convert strings between UTF-8, UTF-16 and ANSI, for LuaJIT (Windows only).
 
 ```
 u2w: UTF-8  -> UTF-16
