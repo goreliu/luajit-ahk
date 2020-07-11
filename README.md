@@ -64,6 +64,11 @@ ahk.exec('Sleep, 2000')
 
 ## API
 ```
+-- Load AutoHotkey.dll and call ahkTextDll with
+--     #NoEnv
+--     #NoTrayIcon
+--     #Persistent
+--     SetBatchLines, -1
 -- return: true(success) false(error)
 init()
 
@@ -89,15 +94,19 @@ setVar(name, value)
 -- return: string
 getVar(name, getPointer)
 
+-- Launch a Gosub routine in script.
 -- return: true(label exists) false(otherwise)
 label(name)
 
+-- Like label(), but do not wait until execution finished. 
 -- return: true(label exists) false(otherwise)
 postLabel(name)
 
+-- Launch a function in script.
 -- return: string
 func(name, ...)
 
+-- Like func(), but run in background and return value will be ignored.
 -- return: true(function exists) false(otherwise)
 postFunc(name, ...)
 
@@ -116,6 +125,7 @@ terminate(timeout)
 -- timeout: Time in milliseconds to wait until thread exits, default 0.
 reload(timeout)
 
+-- script: Script that will be added to a running script.
 -- execute: true(execute) false(do not execute, default)
 -- return: A pointer to the first line of new created code.
 addScript(script, execute)
@@ -128,6 +138,7 @@ addScript(script, execute)
 -- wait: true(wait) false(do not wait, default)
 execLine(pLine, mode, wait)
 
+-- path: Path to a file that will be added to a running script.
 -- reload: true(reload) false(do not reload, default)
 -- ignoreError: 0(signal an error, default) 1(ignore error) 2
 -- return: A pointer to the first line of new created code.

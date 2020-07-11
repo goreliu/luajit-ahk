@@ -48,9 +48,9 @@ int ahkReload(int timeout);
 // return: 1 if thread is paused or 0 if it is not.
 int ahkPause(Str operation);
 
-// Launch a Goto/GoSub routine in script.
+// Launch a Goto/Gosub routine in script.
 // name: Name of label to execute.
-// nowait: Do not to wait until execution finished. 0 - GoSub (default) 1 - GoTo (PostMessage mode)
+// nowait: Do not to wait until execution finished. 0 - Gosub (default) 1 - Goto (PostMessage mode)
 // return: 1 if label exists 0 otherwise.
 UInt ahkLabel(Str name, UInt nowait);
 
@@ -102,6 +102,11 @@ local w2u = utf8fix.w2u
 
 local C = nil
 
+-- Load AutoHotkey.dll and call ahkTextDll with
+--     #NoEnv
+--     #NoTrayIcon
+--     #Persistent
+--     SetBatchLines, -1
 -- return: true(success) false(error)
 function M.init()
     if C ~= nil then
@@ -157,16 +162,19 @@ function M.getVar(name, getPointer)
     return w2u(C.ahkGetVar(L(name), getPointer and 1 or 0), -1)
 end
 
+-- Launch a Gosub routine in script.
 -- return: true(label exists) false(otherwise)
 function M.label(name)
     return C.ahkLabel(L(name), 0) == 1
 end
 
+-- Like label(), but do not wait until execution finished. 
 -- return: true(label exists) false(otherwise)
 function M.postLabel(name)
     return C.ahkLabel(L(name), 1) == 1
 end
 
+-- Launch a function in script.
 -- return: string
 function M.func(name, ...)
     local p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 = ...
@@ -175,6 +183,7 @@ function M.func(name, ...)
     return w2u(ret, -1)
 end
 
+-- Like func(), but run in background and return value will be ignored.
 -- return: true(function exists) false(otherwise)
 function M.postFunc(name, ...)
     local p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 = ...
@@ -207,6 +216,7 @@ function M.reload(timeout)
     C.ahkReload(timeout or 0)
 end
 
+-- script: Script that will be added to a running script.
 -- execute: true(execute) false(do not execute, default)
 -- return: A pointer to the first line of new created code.
 function M.addScript(script, execute)
@@ -223,6 +233,7 @@ function M.execLine(pLine, mode, wait)
     return C.ahkExecuteLine(pLine, mode or 0, wait and 1 or 0)
 end
 
+-- path: Path to a file that will be added to a running script.
 -- reload: true(reload) false(do not reload, default)
 -- ignoreError: 0(signal an error, default) 1(ignore error) 2
 -- return: A pointer to the first line of new created code.
