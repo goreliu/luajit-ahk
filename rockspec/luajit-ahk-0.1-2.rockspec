@@ -1,5 +1,5 @@
 package = "luajit-ahk"
-version = "0.1-1"
+version = "0.1-2"
 source = {
     url = "git://github.com/goreliu/luajit-ahk"
 }
@@ -12,14 +12,13 @@ description = {
     license = "MIT"
 }
 dependencies = {
-    "lua >= 5.1"
+    "lua >= 5.1",
+    "utf8fix"
 }
 build = {
     type = "builtin",
     modules = {
         ahk = "src/ahk.lua",
-        ahk_demo = "src/ahk_demo.lua",
-        utf8fix = "src/utf8fix.lua",
-        utf8fix_demo = "src/utf8fix_demo.lua"
+        ahk_demo = "src/ahk_demo.lua"
     }
 }
