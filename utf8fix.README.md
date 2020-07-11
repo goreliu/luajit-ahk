@@ -1,3 +1,21 @@
+# utf8fix
+
+UTF-8 <-> UTF-16 <-> ANSI for LuaJIT (Windows only)
+
+```
+u2w: UTF-8  -> UTF-16
+w2u: UTF-16 -> UTF-8
+a2w: ANSI   -> UTF-16
+w2a: UTF-16 -> ANSI
+u2a: UTF-8  -> ANSI
+a2w: ANSI   -> UTF-16
+L:   UTF-8  -> UTF-16
+A:   UTF-8  -> ANSI
+```
+
+## example
+
+```
 local utf8fix = require 'utf8fix'
 local L = utf8fix.L
 local A = utf8fix.A
@@ -31,3 +49,4 @@ ffi.C.MessageBoxW(nil, L'test 测试鿃㒨にほんご조선말🎉🥼👔✨',
 ffi.C.MessageBoxA(nil, A'test 测试鿃㒨にほんご조선말🎉🥼👔✨', A'A test 测试👔', 0)
 
 os.remove(A'test 测试.txt')
+```
