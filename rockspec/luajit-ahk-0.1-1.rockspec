@@ -1,7 +1,7 @@
 package = "luajit-ahk"
 version = "0.1-1"
 source = {
-    url = "https://github.com/goreliu/luajit-ahk"
+    url = "git://github.com/goreliu/luajit-ahk"
 }
 description = {
     summary = "LuaJIT FFI binding for AutoHotkey_H",
@@ -18,6 +18,8 @@ build = {
     type = "builtin",
     modules = {
         ahk = "src/ahk.lua",
-        utf8fix = "src/utf8fix.lua"
+        ahk_demo = "src/ahk_demo.lua",
+        utf8fix = "src/utf8fix.lua",
+        utf8fix_demo = "src/utf8fix_demo.lua"
     }
 }
