@@ -117,6 +117,10 @@ function M.init()
         ]], nil, nil) ~= nil
 end
 
+-- script: A string with ahk script.
+-- options: Additional parameter passed to AutoHotkey.dll.
+-- parameters: Parameters passed to dll.
+-- return: true(success) false(error)
 function M.initWithText(script, options, parameters)
     if C == nil then
         C = ffi.load('AutoHotkey')
@@ -125,6 +129,10 @@ function M.initWithText(script, options, parameters)
     return C.ahkTextDll(L(script), L(options), L(parameters)) ~= nil
 end
 
+-- scriptPath: A path to existing ahk file.
+-- options: Additional parameter passed to AutoHotkey.dll.
+-- parameters: Parameters passed to dll.
+-- return: true(success) false(error)
 function M.initWithFile(scriptPath, options, parameters)
     if C == nil then
         C = ffi.load('AutoHotkey')
@@ -222,6 +230,7 @@ function M.addFile(path, reload, ignoreError)
     return C.addFile(path, reload and 1 or 0, ignoreError or 0)
 end
 
+-- return: ffi.load('AutoHotkey')
 function M.C()
     return C
 end
