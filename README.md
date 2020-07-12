@@ -1,7 +1,7 @@
 # luajit-ahk
 LuaJIT FFI binding for [AutoHotkey_H](https://hotkeyit.github.io/v2/) v1.
 
-## Install
+## Installation
 
 **UNICODE version of AutoHotkey.dll should be put into the directory of lua51.dll first.**
 
